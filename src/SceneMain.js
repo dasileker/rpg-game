@@ -1,6 +1,10 @@
 class SceneMain extends Phaser.Scene {
   constructor() {
     super({ key: "SceneMain" });
+
+    this.score = 0;
+    this.scoreText;
+
   }
 
   preload() {
@@ -36,7 +40,7 @@ class SceneMain extends Phaser.Scene {
 
 
   getEnemiesByType(type) {
-    
+
     var arr = [];
     for (var i = 0; i < this.enemies.getChildren().length; i++) {
       var enemy = this.enemies.getChildren()[i];
@@ -84,6 +88,22 @@ class SceneMain extends Phaser.Scene {
       ],
       laser: this.sound.add("sndLaser")
     };
+    this.sfx.laser.play();
+
+    this.backgrounds = [];
+    for (var i = 0; i < 5; i++) { // create five scrolling backgrounds
+      var bg = new ScrollingBackground(this, "sprBg0", i * 10);
+      this.backgrounds.push(bg);
+    }
+
+    this.scoreText = this.add.text(this.game.config.width * 0, 0, "score: 0", {
+      fontFamily: 'monospace',
+      fontSize: 30,
+      fontStyle: 'bold',
+      color: '#ffffff',
+      align: 'center'
+    });
+
 
     this.player = new Player(
       this,
@@ -91,7 +111,7 @@ class SceneMain extends Phaser.Scene {
       this.game.config.height * 0.5,
       "sprPlayer"
     );
-    this.sfx.laser.play();
+
 
     this.keyUp = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
     this.keyDown = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
@@ -142,7 +162,38 @@ class SceneMain extends Phaser.Scene {
       loop: true
     });
 
+    this.physics.add.collider(this.playerLasers, this.enemies, function (playerLaser, enemy) {
+      if (enemy) {
+        if (enemy.onDestroy !== undefined) {
+          enemy.onDestroy();
+        }
+        this.score += 10;
+        this.scoreText.setText("score" + this.score);
+        enemy.explode(true);
+        playerLaser.destroy();
+      }
+    });
 
+    // scoreText = game.add(16,16,"Score:0", {fontSize:'32',fill: "#000"})
+    // this.scoreTotal = this.add.text(this.game.config.width * 0, 0, "score:0", {
+    //   fontFamily: 'monospace',
+    //   fontSize: 30,
+    //   fontStyle: 'bold',
+    //   color: '#ffffff',
+    //   align: 'center'
+    // });
+
+
+    this.physics.add.overlap(this.player, this.enemies, function (player, enemy) {
+      if (!player.getData("isDead") &&
+        !enemy.getData("isDead")) {
+        player.explode(false);
+        player.onDestroy();
+        enemy.explode(true);
+        this.scoreTotal = 0;
+      }
+
+    });
 
   }// end
 
@@ -152,21 +203,49 @@ class SceneMain extends Phaser.Scene {
       var enemy = this.enemies.getChildren()[i];
 
       enemy.update();
-    }
-    this.player.update();
-    
-    if (this.keyUp.isDown) {
-      this.player.moveUp();
-    }
-    else if (this.keyDown.isDown) {
-      this.player.moveDown();
+
+      if (enemy.x < -enemy.displayWidth ||
+        enemy.x > this.game.config.width + enemy.displayWidth ||
+        enemy.y < -enemy.displayHeight * 4 ||
+        enemy.y > this.game.config.height + enemy.displayHeight) {
+
+        if (enemy) {
+          if (enemy.onDestroy !== undefined) {
+            enemy.onDestroy();
+          }
+
+          enemy.destroy();
+        }
+
+      }
     }
 
-    if (this.keyLeft.isDown) {
-      this.player.moveLeft();
+    for (var i = 0; i < this.backgrounds.length; i++) {
+      this.backgrounds[i].update();
     }
-    else if (this.keyRight.isDown) {
-      this.player.moveRight();
+
+    if (!this.player.getData("isDead")) {
+      this.player.update();
+      if (this.keyUp.isDown) {
+        this.player.moveUp();
+      }
+      else if (this.keyDown.isDown) {
+        this.player.moveDown();
+      }
+      if (this.keyLeft.isDown) {
+        this.player.moveLeft();
+      }
+      else if (this.keyRight.isDown) {
+        this.player.moveRight();
+      }
+
+      if (this.keySpace.isDown) {
+        this.player.setData("isShooting", true);
+      }
+      else {
+        this.player.setData("timerShootTick", this.player.getData("timerShootDelay") - 1);
+        this.player.setData("isShooting", false);
+      }
     }
   }
 }
