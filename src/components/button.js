@@ -24,5 +24,10 @@ class Button extends Phaser.GameObjects.Container {
     this.button.on('pointerdown', () => { this.scene.scene.start(targetScene); });
 
     this.button.on('pointerover', () => { this.button.setTexture(key2); this.button.cursorPointer; });
+
+    this.button.on('pointerout', () => { this.button.setTexture(key1); });
+
+    this.scene.add.existing(this);
+    
   }
 }

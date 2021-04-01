@@ -87,6 +87,12 @@ export default class PreloaderScene extends Phaser.Scene {
     this.load.audio('bgMusic', ['assets/sounds/TownTheme.mp3']);
   }
 
+
+  // need to add init
+
+
+
+  /// need to be refactored
   ready () {
     this.readyCount++;
     if (this.readyCount === 2) {
