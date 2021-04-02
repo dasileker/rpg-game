@@ -1,6 +1,6 @@
-import Base from '../ Base';
+import Base from '../Base';
 
-class PlayerLaser extends Base {
+export default class PlayerLaser extends Base {
   constructor(scene, x, y) {
     super(scene, x, y, 'player-laser');
     this.setTexture('player-laser');
@@ -17,7 +17,6 @@ class PlayerLaser extends Base {
       return;
     }
     super.preUpdate(time, delta);
-    this.y -=this.spedd
+    this.y -= this.speed;
   }
-  
 }
