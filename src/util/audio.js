@@ -1,10 +1,10 @@
+/* eslint-disable no-underscore-dangle */
 
-
-class Audio {
+export default class Audio {
   constructor() {
     this._soundOn = true;
-    this._musicOn = ture;
-    this.bgMusicPlaying = false;
+    this._musicOn = true;
+    this._bgMusicPlaying = false;
   }
 
   set musicOn(value) {
@@ -22,4 +22,14 @@ class Audio {
   get soundOn() {
     return this._soundOn;
   }
+
+  set bgMusicPlaying(value) {
+    this._bgMusicPlaying = value;
+  }
+
+  get bgMusicPlaying() {
+    return this._bgMusicPlaying;
+  }
 }
+
+/* eslint-enable no-underscore-dangle */

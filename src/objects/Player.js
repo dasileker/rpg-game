@@ -1,9 +1,9 @@
 import Phaser from 'phaser';
 import Base from '../Base';
 import config from '../config/config';
+import PlayerLaser from './PlayerLaser';
 
-
-class Player extends Base {
+export default class Player extends Base {
   constructor(scene, x, y, key) {
     super(scene, x, y, key, 'Player');
 
@@ -31,7 +31,7 @@ class Player extends Base {
       this.x -= this.deltaX;
     }
   }
-   
+
   right() {
     if (this.x < config.width) {
       this.x += this.deltaX;
@@ -48,8 +48,6 @@ class Player extends Base {
       loop: false,
     });
   }
-
-
 
   update() {
     this.body.setVelocity(0, 0);

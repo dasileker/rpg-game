@@ -1,17 +1,12 @@
-import 'phaser';
-import Button from '../components/button';
-
+import Phaser from 'phaser';
+import Button from '../components/Button';
 
 export default class OptionsScene extends Phaser.Scene {
-  constructor () {
+  constructor() {
     super('Options');
   }
 
-  preload () {
-  }
-
   create() {
-    
     this.audio = this.sys.game.globals.audio;
 
     this.text = this.add.text(300, 100, 'Options', { fontSize: 40 });
@@ -50,6 +45,22 @@ export default class OptionsScene extends Phaser.Scene {
   }
 
   updateAudio() {
-    
+    if (this.audio.musicOn === false) {
+      this.musicButton.setTexture('box');
+      this.sys.game.globals.bgMusic.stop();
+      this.audio.bgMusicPlaying = false;
+    } else {
+      this.musicButton.setTexture('checkedBox');
+      if (this.audio.bgMusicPlaying === false) {
+        this.sys.game.globals.bgMusic.play();
+        this.audio.bgMusicPlaying = true;
+      }
+    }
+
+    if (this.audio.soundOn === false) {
+      this.soundButton.setTexture('box');
+    } else {
+      this.soundButton.setTexture('checkedBox');
+    }
   }
-};
+}
