@@ -45,6 +45,10 @@
 
 <a href="https://space-salvation.netlify.app/"><img src="https://www.netlify.com/img/deploy/button.svg"></a>
 
+## Loom video
+[Loom video!](https://www.loom.com/share/2624f51a52694a798a06c912ae00fcc6)
+
+
 ## Install 🛠
 
 
