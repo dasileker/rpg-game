@@ -35,7 +35,7 @@ export default class CreditsScene extends Phaser.Scene {
     Phaser.Display.Align.In.Center(this.creditsText, this.zone);
 
     Phaser.Display.Align.In.Center(this.madeByText, this.zone);
-    
+
     Phaser.Display.Align.In.Center(this.madeForText, this.zone);
 
     this.madeByText.setY(400);
