@@ -15,12 +15,12 @@ export default class CreditsScene extends Phaser.Scene {
       fill: '#fff',
     });
 
-    this.madeForText = this.add.text(0, 0, 'Microverse Capstone Project', {
+    this.madeByText = this.add.text(0, 0, 'Created By: Zerradi Amine', {
       fontSize: '26px',
       fill: '#fff',
     });
 
-    this.madeByText = this.add.text(0, 0, 'Created By: Zerradi Amine', {
+    this.madeForText = this.add.text(0, 0, 'Microverse Capstone Project', {
       fontSize: '26px',
       fill: '#fff',
     });
@@ -33,11 +33,13 @@ export default class CreditsScene extends Phaser.Scene {
     );
 
     Phaser.Display.Align.In.Center(this.creditsText, this.zone);
-    Phaser.Display.Align.In.Center(this.madeForText, this.zone);
+
     Phaser.Display.Align.In.Center(this.madeByText, this.zone);
+    
+    Phaser.Display.Align.In.Center(this.madeForText, this.zone);
 
     this.madeByText.setY(400);
-    this.madeForText.setY(450);
+    this.madeForText.setY(500);
 
     this.creditsTween = this.tweens.add({
       targets: this.creditsText,
@@ -64,7 +66,7 @@ export default class CreditsScene extends Phaser.Scene {
       y: -300,
       ease: 'Power1',
       duration: 5000,
-      delay: 3000,
+      delay: 4000,
       onComplete: function () {
         this.madeForTween.destroy;
         this.scene.start('Title');

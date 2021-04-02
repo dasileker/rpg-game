@@ -55,7 +55,7 @@
     "eslint-config-airbnb-base": "14.2.1",
     "eslint-plugin-import": "^2.22.1",
     "file-loader": "6.2.0",
-    "html-webpack-plugin": "^4.5.1",
+    "html-webpack-plugin": "4.5.1",
     "jest": "^26.6.3",
     "jest-canvas-mock": "^2.3.0",
     "jest-expect-subclass": "^1.0.1",
@@ -65,7 +65,7 @@
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "3.17.x",
     "terser-webpack-plugin": "^2.2.1",
-    "webpack": "^4.46.0",
+    "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.9.0",
     "webpack-merge": "^4.2.2"

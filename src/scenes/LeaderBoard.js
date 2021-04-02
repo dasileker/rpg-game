@@ -11,10 +11,9 @@ export default class LeaderBoard extends Phaser.Scene {
   create() {
     // Title
     this.add
-      .text(config.width * 0.5, 50, 'Leaderboard', {
+      .text(config.width * 0.5, 50, 'Best scores', {
         fontSize: 40,
-        fontWeight: 'bold',
-        color: 'lightblue',
+        color: '#fff',
       })
       .setOrigin();
 
@@ -41,7 +40,7 @@ export default class LeaderBoard extends Phaser.Scene {
       500,
       'blueButton1',
       'blueButton2',
-      'Home',
+      'Menu',
       'Title',
     );
   }
