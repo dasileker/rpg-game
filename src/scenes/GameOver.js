@@ -16,6 +16,7 @@ export default class GameOver extends Phaser.Scene {
 
   create() {
     const score = this.sys.game.globals.score;
+    this.scoreTotal = score;
     this.title = this.add.text(config.width * 0.5, 128, 'GAME OVER', {
       fontFamily: 'monospace',
       fontSize: 48,
@@ -29,7 +30,7 @@ export default class GameOver extends Phaser.Scene {
       .text(
         this.scale.width * 0.5,
         this.scale.height * 0.3,
-        `Final score: ${score}`,
+        `Final score: ${this.scoreTotal}`,
         { fontSize: 24 },
       )
       .setOrigin();
