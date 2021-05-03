@@ -65,7 +65,7 @@
 - I have used Jest to test my code, you can find more info here: [jest](https://jestjs.io/)
 
 - Open `Terminal` again
-- Run `cd shooter-game` to enter the directory
+- Run `cd rpg-game` to enter the directory
 - Run `npm test` to start testing
 - All tests will pass 👌
 
