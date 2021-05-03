@@ -54,7 +54,7 @@
 
 -  Open your `Terminal`
 - `git clone git@github.com:dasileker/rpg-game.git` to download <b>or</b> you can download using `HTTPS` by running `git clone https://github.com/dasileker/rpg-game.git` in the terminal.
-- `cd shooter-game` to enter the directory.
+- `cd rpg-game` to enter the directory.
 -  `npm i` to install all the packages.
 - `npm run build` to build the app.
 -  If you would like to edit the code for your preference then you can enter development mode by running `npm start` in the terminal.
